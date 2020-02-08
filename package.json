@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "localizate": "node generateLocalization.js",
+    "translate": "node translate.js"
   },
   "repository": {
     "type": "git",

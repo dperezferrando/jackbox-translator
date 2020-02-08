@@ -8,14 +8,23 @@ const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\gam
 const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
 const LOCALIZATION = {}
 
+const shuffle = () => {
+  return _(LOCALIZATION)
+    .map((value, key) => ({ [key]: value }))
+    .shuffle()
+    .shuffle()
+    .reduce((one, another) => ({ ...one, ...another }), {})
+}
+
+
 const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
 
 const replaceWithIdIfPromp = (field, dir) => {
   if(!isPrompt(field.n))
     return field;
   if(field.s)
-    return { ...field, s: `TRANSLATION_${dir}_${hash(field.s)}`}
-  return { ...field, v: `TRANSLATION_${dir}_${hash(field.v)}`}
+    return { ...field, s: `TRANSLATION_${hash(field.s)}`}
+  return { ...field, v: `TRANSLATION_${hash(field.v)}`}
 }
 
 const modifyFile = (file, fullPath, dir) => {
@@ -33,7 +42,7 @@ const readAndProcessDataFile = (path, dir) => {
     .map(it => it.fields)
     .sequence()
     .filter(({ n }) => isPrompt(n))
-    .tap(({ v, n, s }) =>  _.assign(LOCALIZATION, { [`TRANSLATION_${dir}_${hash(s ? s: v)}`]: s ? s: v }))
+    .tap(({ v, n, s }) =>  _.assign(LOCALIZATION, { [`TRANSLATION_${hash(s ? s: v)}`]: s ? s: v }))
 }
 
 const processFolder = (folderName) => {
@@ -43,7 +52,8 @@ const processFolder = (folderName) => {
     .flatMap(dir => readAndProcessDataFile(fullPath, dir))
     .reduce(undefined, _.noop)
     .toPromise(Promise)
-    .then(() => fs.writeFileAsync("./localization.json", JSON.stringify(LOCALIZATION)))
+    .then(() => shuffle(LOCALIZATION)) 
+    .then(localization => fs.writeFileAsync("./localization.json", JSON.stringify(localization)))
 }
 
 Promise.map(_.take(FOLDERS, 2), processFolder,{concurrency: 2})

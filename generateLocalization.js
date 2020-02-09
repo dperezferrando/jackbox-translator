@@ -6,6 +6,7 @@ import hash from "string-hash";
 const fs = Promise.promisifyAll(require("fs"));
 const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\games\\PushTheButton\\content"
 const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
+//const FOLDERS = ["PushTheButtonMoralityTests"]
 const LOCALIZATION = {}
 
 const shuffle = () => {
@@ -56,4 +57,4 @@ const processFolder = (folderName) => {
     .then(localization => fs.writeFileAsync("./localization.json", JSON.stringify(localization)))
 }
 
-Promise.map(_.take(FOLDERS, 2), processFolder,{concurrency: 2})
+Promise.map(FOLDERS, processFolder, {concurrency: 4})

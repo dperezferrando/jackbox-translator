@@ -8,6 +8,7 @@ const fs = Promise.promisifyAll(require("fs"));
 const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\games\\PushTheButton\\content"
 
 const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
+//const FOLDERS = ["PushTheButtonMoralityTests"]
 
 
 const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
@@ -43,4 +44,4 @@ const processFolder = (folderName) => {
     .toPromise(Promise)
 }
 
-Promise.map(_.take(FOLDERS, 2), processFolder,{concurrency: 2})
+Promise.map(FOLDERS, processFolder,{concurrency: 4})

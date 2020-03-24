@@ -1,5 +1,5 @@
 import should from 'should';
-import { PROMPT, PROMPT2, TRANSLATION } from "./helpers/fixture";
+import { PROMPT, PROMPT2, TRANSLATION, NOT_PROMPT, NOT_TEXT } from "./helpers/fixture";
 import { replaceWithIdIfPrompt } from "../localize";
 
 describe('Localization tests', () => {
@@ -12,4 +12,11 @@ describe('Localization tests', () => {
       .should.value("s", TRANSLATION)
 
   });
+
+  it('should not replace original text with ID', () => {
+
+    replaceWithIdIfPrompt(NOT_PROMPT)
+      .should.value("v", NOT_TEXT)
+  });
+
 });

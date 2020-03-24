@@ -3,6 +3,7 @@ import hash from "string-hash";
 const TEST_PROMPT = "Test Prompt";
 
 export const TRANSLATION = `TRANSLATION_${hash(TEST_PROMPT)}`;
+export const NOT_TEXT = "This shouldn't be translated"
 
 export const PROMPT = {
     "n": "HumanPromptText",
@@ -16,3 +17,9 @@ export const PROMPT2 = {
   "t": "A",
   "v": "805277_0"
 }
+
+export const NOT_PROMPT = {
+  "n": "AlienPromptAdultt1",
+  "t": "S",
+  "v": NOT_TEXT
+};

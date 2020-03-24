@@ -6,6 +6,8 @@ import hash from "string-hash";
 const fs = Promise.promisifyAll(require("fs"));
 const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\games\\PushTheButton\\content"
 const TEXT_PROPERTIES = ["s", "v"] // ORDER IS IMPORTANT
+const VALID_FIELDS = [/Text/gi, /HumanPromptAudio/gi];
+
 const LOCALIZATION = {}
 
 const shuffle = () => {
@@ -17,7 +19,7 @@ const shuffle = () => {
 }
 
 
-const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
+const isPrompt = (property) => _.some(VALID_FIELDS, it => it.test(property)) 
 
 export const replaceWithIdIfPrompt = (field) => {
 

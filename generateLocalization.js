@@ -20,7 +20,7 @@ const shuffle = () => {
 
 const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
 
-const replaceWithIdIfPromp = (field, dir) => {
+export const replaceWithIdIfPromp = (field, dir) => {
   if(!isPrompt(field.n))
     return field;
   if(field.s)

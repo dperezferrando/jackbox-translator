@@ -19,7 +19,7 @@ const shuffle = () => {
 
 const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
 
-export const replaceWithIdIfPromp = (field, dir) => {
+export const replaceWithIdIfPrompt = (field, dir) => {
  // console.log("AA", field, dir)
   if(!isPrompt(field.n))
     return field;
@@ -30,7 +30,7 @@ export const replaceWithIdIfPromp = (field, dir) => {
 
 const modifyFile = (file, fullPath, dir) => {
   const { fields } = file;
-  const newFields = fields.map(it => replaceWithIdIfPromp(it, dir));
+  const newFields = fields.map(it => replaceWithIdIfPrompt(it, dir));
   return fs.writeFileAsync(fullPath, JSON.stringify({ ...file,  fields: newFields }));
 
 }

@@ -1,6 +1,11 @@
+import hash from "string-hash";
+
+const TEST_PROMPT = "Test Prompt";
+
+export const TRANSLATION = `TRANSLATION_${hash(TEST_PROMPT)}`;
 
 export const promptExample = {
     "n": "HumanPromptText",
     "t": "S",
-    "v": "An elephant at the zoo writes “unlock my gate, please” in the dirt. The proper response is to..."
+    "v": TEST_PROMPT
 }

@@ -5,7 +5,7 @@ import hash from "string-hash";
 
 const fs = Promise.promisifyAll(require("fs"));
 const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\games\\PushTheButton\\content"
-const TEXT_PROPERTIES = ["s", "v"]
+const TEXT_PROPERTIES = ["s", "v"] // ORDER IS IMPORTANT
 const LOCALIZATION = {}
 
 const shuffle = () => {

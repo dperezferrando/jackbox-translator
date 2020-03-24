@@ -19,4 +19,11 @@ describe('Localization tests', () => {
       .should.value("v", NOT_TEXT)
   });
 
+  it("if 's' is present 'v' shouldn't be translated", () => {
+
+    replaceWithIdIfPrompt(PROMPT2)
+      .should.not.value("v", TRANSLATION)
+
+  });
+
 });

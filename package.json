@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "localize": "node index.js",
+    "localize": "node runLocalization.js",
     "translate": "node runTranslate.js",
-    "test": "mocha --recursive './*/*.spec.js'"
+    "test": "mocha --recursive './tests/*.spec.js'"
   },
   "repository": {
     "type": "git",

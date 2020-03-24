@@ -1,6 +1,6 @@
 const assert = require('assert');
-const { promptExample } = require("./helpers/fixture");
-import { replaceWithIdIfPrompt } from "../generateLocalization"
+import { promptExample } from "./helpers/fixture";
+import { replaceWithIdIfPrompt } from "../localize"
 
 describe('Localization tests', () => {
   it('should replace with ID if prompt', () => {

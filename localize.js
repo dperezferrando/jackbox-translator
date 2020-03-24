@@ -27,7 +27,11 @@ export const replaceWithIdIfPrompt = (field) => {
   // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
   // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
   const property = _.find(TEXT_PROPERTIES, (property) => _.has(field, property));
-  return { ...field, [property]: `TRANSLATION_${hash(field[property])}`}
+  const id = `TRANSLATION_${hash(field[property])}`;
+
+  // HAVING EFFECT INSIDE MAP => NOT COOL
+   _.assign(LOCALIZATION, { [id]: field[property] })
+  return { ...field, [property]: id}
 }
 
 const modifyFile = (file, fullPath, dir) => {
@@ -41,11 +45,7 @@ const readAndProcessDataFile = (path, dir) => {
   const fullPath = `${path}\\${dir}\\data.jet`;
   return highland(fs.readFileAsync(fullPath))
     .map(it => JSON.parse(it.toString()))
-    .tap(it => modifyFile(it, fullPath, dir))
-    .map(it => it.fields)
-    .sequence()
-    .filter(({ n }) => isPrompt(n))
-    .tap(({ v, n, s }) =>  _.assign(LOCALIZATION, { [`TRANSLATION_${hash(s ? s: v)}`]: s ? s: v }))
+    .tap(it => modifyFile(it, fullPath, dir));
 }
 
 export const processFolder = (folderName) => {

@@ -5,7 +5,7 @@ import hash from "string-hash";
 
 const fs = Promise.promisifyAll(require("fs"));
 const PATH = "I:\Juegos\\Steam\\steamapps\\common\\The Jackbox Party Pack 6\\games\\PushTheButton\\content"
-
+const TEXT_PROPERTIES = ["s", "v"]
 const LOCALIZATION = {}
 
 const shuffle = () => {
@@ -19,18 +19,20 @@ const shuffle = () => {
 
 const isPrompt = (property) => /Text/gi.test(property) || /HumanPromptAudio/gi.test(property) 
 
-export const replaceWithIdIfPrompt = (field, dir) => {
- // console.log("AA", field, dir)
+export const replaceWithIdIfPrompt = (field) => {
+
   if(!isPrompt(field.n))
     return field;
-  if(field.s)
-    return { ...field, s: `TRANSLATION_${hash(field.s)}`}
-  return { ...field, v: `TRANSLATION_${hash(field.v)}`}
+  // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
+  // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
+  // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
+  const property = _.find(TEXT_PROPERTIES, (property) => _.has(field, property));
+  return { ...field, [property]: `TRANSLATION_${hash(field[property])}`}
 }
 
 const modifyFile = (file, fullPath, dir) => {
   const { fields } = file;
-  const newFields = fields.map(it => replaceWithIdIfPrompt(it, dir));
+  const newFields = fields.map(it => replaceWithIdIfPrompt(it));
   return fs.writeFileAsync(fullPath, JSON.stringify({ ...file,  fields: newFields }));
 
 }

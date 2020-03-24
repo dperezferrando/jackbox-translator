@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "localize": "node index.js",
-    "translate": "node runTranslate.js"
+    "translate": "node runTranslate.js",
+    "test": "mocha --recursive './*/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "highland": "^2.13.5",
     "lodash": "^4.17.15",
     "string-hash": "^1.1.3"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.1"
   }
 }

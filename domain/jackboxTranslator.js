@@ -5,12 +5,10 @@ import * as localize from "../localization"
 
 class JackboxTranslator extends JackboxProcessor {
 
-  _modificator_ (field) {
-    if(!this.isPrompt(field.n))
-      return field;
-    const property = _.find(this.game.textProperties, (property) => _.has(field, property));
+  _modificator_ (field, property) {
+
     return { ...field, [property]: localize[field[property]] };
-}
+  }
 
 }
 

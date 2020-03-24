@@ -11,7 +11,6 @@ class JackboxProcessor {
   }
 
   run() {
-
     return Promise.map(this.game.folders, (folder) => this.processFolder(folder), { concurrency: 4 });
   }
 
@@ -25,7 +24,7 @@ class JackboxProcessor {
   }
 
   readAndProcessDataFile(path, dir) {
-    const fullPath = `${path}\\${dir}\\data.jet`;
+    const fullPath = `${path}\\${dir}\\${this.game.dataFile}`;
     return highland(fs.readFileAsync(fullPath))
       .map(it => JSON.parse(it.toString()))
       .tap(it => this.modifyFile(it, fullPath));
@@ -33,17 +32,30 @@ class JackboxProcessor {
 
   modifyFile(file, fullPath) {
     const { fields } = file;
-    const newFields = fields.map(it => this._modificator_(it));
+    const newFields = fields.map(it => this.processField(it));
     return fs.writeFileAsync(fullPath, JSON.stringify({ ...file,  fields: newFields }));
+  }
+
+  processField(field){
+    if(!this.isPrompt(field[this.game.promptIdProperty]))
+      return field;
+      // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
+      // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
+      // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
+    const property = _.find(this.game.textProperties, (property) => _.has(field, property));
+    return this._modificator_(field, property);
   }
 
   fullGamePath() {
     return `${this.steamPath}\\${this.game.path}`
   }
 
-  // NO OLVIDAR GENERALIZAR
   isPrompt(property) {
-    return /Text/gi.test(property) || /HumanPromptAudio/gi.test(property);
+    return _.some(this.game.promptsRegExp, it => new RegExp(it, "gi").test(property))
+  }
+
+  _modificator_(field) {
+    throw new Error("Not implemented - This is an abstract class")
   }
 
 }

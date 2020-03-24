@@ -18,15 +18,8 @@ class JackboxLocalizator extends JackboxProcessor {
 
   }
 
-  _modificator_(field) {
-    if(!this.isPrompt(field.n))
-      return field;
-    // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
-    // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
-    // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
-    const property = _.find(this.game.textProperties, (property) => _.has(field, property));
+  _modificator_(field, property) {
     const id = `TRANSLATION_${hash(field[property])}`;
-
     // HAVING EFFECT INSIDE MAP => NOT COOL
      _.assign(this.localization, { [id]: field[property] })
     return { ...field, [property]: id}

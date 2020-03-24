@@ -12,7 +12,6 @@ const shuffle = () => {
   return _(LOCALIZATION)
     .map((value, key) => ({ [key]: value }))
     .shuffle()
-    .shuffle()
     .reduce((one, another) => ({ ...one, ...another }), {})
 }
 

@@ -1,5 +1,5 @@
 import Promise from "bluebird";
-import { processFolder } from "./localize";
+import { execute } from "./localize";
 const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
 
-Promise.map(FOLDERS, processFolder, {concurrency: 4})
+Promise.map(FOLDERS, execute, {concurrency: 4})

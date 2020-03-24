@@ -1,17 +1,6 @@
-import Promise from "bluebird";
-import _ from "lodash";
-import * as localize from "./localization"
-import { isPrompt, processFolder, TEXT_PROPERTIES } from "./common";
+import JackboxTranslator from "./domain/jackboxTranslator";
+import pushTheButton from "./domain/games/pushTheButton"
 
-const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
+new JackboxTranslator("I:\Juegos\\Steam\\steamapps\\common", pushTheButton)
+  .run()
 
-
-const localizeIfPrompt = (field) => {
-  if(!isPrompt(field.n))
-    return field;
-  const property = _.find(TEXT_PROPERTIES, (property) => _.has(field, property));
-  return { ...field, [property]: localize[field[property]] };
-
-}
-
-Promise.map(FOLDERS, (folder) => processFolder(folder, localizeIfPrompt),{concurrency: 4})

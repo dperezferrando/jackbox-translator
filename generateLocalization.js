@@ -1,5 +1,7 @@
 import Promise from "bluebird";
-import { execute } from "./localize";
-const FOLDERS = ["PushTheButtonDrawingTests", "PushTheButtonMoralityTests", "PushTheButtonRatingTests", "PushTheButtonWritingTests"]
+import JackboxLocalizator from "./domain/jackboxLocalizator";
+import pushTheButton from "./domain/games/pushTheButton"
 
-Promise.map(FOLDERS, execute, {concurrency: 4})
+new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", pushTheButton)
+  .run()
+

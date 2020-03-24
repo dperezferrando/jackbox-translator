@@ -1,6 +1,8 @@
 import hash from "string-hash";
+import pushTheButton from "../../domain/games/pushTheButton";
+import JackboxLocalizator from "../../domain/jackboxLocalizator";
 
-const TEST_PROMPT = "Test Prompt";
+export const TEST_PROMPT = "Test Prompt";
 
 export const TRANSLATION = `TRANSLATION_${hash(TEST_PROMPT)}`;
 export const NOT_TEXT = "This shouldn't be translated"
@@ -23,3 +25,6 @@ export const NOT_PROMPT = {
   "t": "S",
   "v": NOT_TEXT
 };
+
+
+export const jackboxLocalizator = new JackboxLocalizator("", pushTheButton);

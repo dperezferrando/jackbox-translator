@@ -1,7 +1,6 @@
 import Promise from "bluebird";
 import highland from "highland";
 import _ from "lodash";
-import "highland-concurrent-flatmap";
 
 const fs = Promise.promisifyAll(require("fs"));
 
@@ -17,7 +16,6 @@ class JackboxProcessor {
   }
 
   processFolder(path) {
-   // console.log(path, "folder")
     return highland(fs.readdirAsync(path))
       .sequence()
       .filter(it => !isNaN(it) || _.includes(this.game.dataFiles, it))

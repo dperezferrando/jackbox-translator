@@ -6,7 +6,7 @@ class Game {
   }
 
   isDataFile(fileName) {
-    return _.includes(this.dataFiles, it);
+    return _.includes(this.dataFiles, fileName);
   }
 
   isPrompt(property) {

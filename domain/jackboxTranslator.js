@@ -11,7 +11,6 @@ class JackboxTranslator extends JackboxProcessor {
 
 
   _modificator_ (field, property) {
-
     return { ...field, [property]: this.localization[field[property]] };
   }
 

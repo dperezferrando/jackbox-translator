@@ -2,6 +2,7 @@ import hash from "string-hash";
 import pushTheButton from "../../domain/games/pushTheButton";
 import JackboxLocalizator from "../../domain/jackboxLocalizator";
 import JackboxTranslator from "../../domain/jackboxTranslator";
+import Game from "../../domain/games/game";
 
 export const TEST_PROMPT = "Test Prompt";
 
@@ -43,5 +44,5 @@ export const LOCALIZED_PROMPT2 = {
 
 const localization = { [TRANSLATION]: TRANSLATED_TEXT };
 
-export const jackboxLocalizator = new JackboxLocalizator("", pushTheButton);
-export const jackboxTranslator = new JackboxTranslator("", pushTheButton, localization);
+export const jackboxLocalizator = new JackboxLocalizator("", new Game(pushTheButton));
+export const jackboxTranslator = new JackboxTranslator("", new Game(pushTheButton), localization);

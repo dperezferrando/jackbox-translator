@@ -1,7 +1,7 @@
 import Promise from "bluebird";
 import JackboxLocalizator from "./domain/jackboxLocalizator";
-import pushTheButton from "./domain/games/pushTheButton"
+import quiplash2 from "./domain/games/quiplash2"
 
-new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", pushTheButton)
+new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", quiplash2)
   .run()
 

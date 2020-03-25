@@ -11,8 +11,8 @@ class JackboxLocalizator extends JackboxProcessor {
     this.localization = {}
   }
 
-  processFolder(folder) {
-    return super.processFolder(folder)
+  run() {
+    return super.run()
     .then(() => this.shuffle()) 
     .then(localization => fs.writeFileAsync("./localization.json", JSON.stringify(localization)));
 

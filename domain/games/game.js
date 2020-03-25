@@ -14,7 +14,7 @@ class Game {
   }
 
   fieldsProperty(file) {
-    return _.has(file, "fields")? "fields" : this.arrayName
+    return _.has(file, "fields")? "fields" : this.arrayName;
   }
 
   shouldProcessField(field) {

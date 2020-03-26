@@ -1,15 +1,11 @@
 import should from 'should';
-import { PROMPT, PROMPT2, TRANSLATION, NOT_PROMPT, NOT_TEXT, TEST_PROMPT, jackboxLocalizator } from "./helpers/fixture";
+import { PROMPT, PROMPT2, TRANSLATION, TRANSLATION2, NOT_PROMPT, NOT_TEXT, TEST_PROMPT, TEST_PROMPT2, jackboxLocalizator, localization } from "./helpers/fixture";
 
 describe('Jackbox Localizator tests', () => {
-  it('should replace original text with ID', () => {
+  it('should replace original texts with ID', () => {
 
     jackboxLocalizator.processField(PROMPT)
-      .should.value("v", TRANSLATION)
-
-     jackboxLocalizator.processField(PROMPT2)
-      .should.value("s", TRANSLATION)
-
+      .should.have.properties( { "v": TRANSLATION, "s": TRANSLATION2 })
   });
 
   it("translation should be saved when processing field", () => {
@@ -17,7 +13,7 @@ describe('Jackbox Localizator tests', () => {
     jackboxLocalizator.processField(PROMPT);
     jackboxLocalizator
       .localization
-      .should.be.eql({ [TRANSLATION]: TEST_PROMPT })
+      .should.be.eql({ [TRANSLATION]: TEST_PROMPT, [TRANSLATION2]: TEST_PROMPT2 })
 
   });
 
@@ -26,13 +22,5 @@ describe('Jackbox Localizator tests', () => {
     jackboxLocalizator.processField(NOT_PROMPT)
       .should.value("v", NOT_TEXT)
   });
-
-  it("if 's' is present 'v' shouldn't be translated", () => {
-
-    jackboxLocalizator.processField(PROMPT2)
-      .should.not.value("v", TRANSLATION)
-
-  });
-
 
 });

@@ -53,8 +53,8 @@ class JackboxProcessor {
   processField(field){
     if(!this.game.shouldProcessField(field))
       return field;
-    const property = this.game.propertyToModify(field);
-    return this._modificator_(field, property);
+    const properties = this.game.propertyToModify(field);
+    return this._modificator_(field, properties);
   }
 
   fullGamePath() {

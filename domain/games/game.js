@@ -25,7 +25,7 @@ class Game {
     // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
     // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
     // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
-    return _.find(this.textProperties, (property) => _.has(field, property))
+    return this.textProperties;//_.find(this.textProperties, (property) => _.has(field, property))
   }
 
 

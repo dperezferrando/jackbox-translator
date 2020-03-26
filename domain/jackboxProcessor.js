@@ -58,7 +58,9 @@ class JackboxProcessor {
   }
 
   processProperties(field, properties) {
-    const newFields = properties.map( property => this._modificator_(field, property))
+    const newFields = properties
+      .filter(property => _.has(field, property))
+      .map( property => this._modificator_(field, property))
     return { ...field, ...(_.reduce(newFields, _.merge, {})) };
   }
 

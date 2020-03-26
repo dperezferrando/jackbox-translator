@@ -8,6 +8,13 @@ describe('Jackbox Localizator tests', () => {
       .should.have.properties( { "v": TRANSLATION, "s": TRANSLATION2 })
   });
 
+
+  it('should replace only one text with ID', () => {
+
+    jackboxLocalizator.processField(PROMPT2)
+      .should.have.properties( { "v": TRANSLATION })
+  });
+
   it("translation should be saved when processing field", () => {
 
     jackboxLocalizator.processField(PROMPT);

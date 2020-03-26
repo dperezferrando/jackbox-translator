@@ -21,11 +21,11 @@ export const PROMPT = {
 }
 
 export const PROMPT2 = {
-  "n": "HumanPromptAudio",
-  "s": TEST_PROMPT,
-  "t": "A",
-  "v": "805277_0"
+    "n": "HumanPromptText",
+    "t": "S",
+    "v": TEST_PROMPT
 }
+
 
 export const NOT_PROMPT = {
   "n": "AlienPromptAdultt1",

@@ -12,13 +12,13 @@ class JackboxProcessor {
   }
 
   run() {
-    return this.processFolder(this.fullGamePath())//Promise.map(this.game.folders, (folder) => this.processFolder(folder), { concurrency: 4 });
+    return this.processFolder(this.fullGamePath());
   }
 
   processFolder(path) {
     return highland(fs.readdirAsync(path))
       .sequence()
-      .filter(it => !isNaN(it) || _.includes(this.game.dataFiles, it))
+      .filter(it => !isNaN(it) || this.game.isDataFile(it))
       .flatMap(dir => this.readAndProcessDataFile(path, dir))
       .reduce(undefined, _.noop)
       .toPromise(Promise)
@@ -32,7 +32,7 @@ class JackboxProcessor {
   }
 
   processFileOrFolder(it, fullPath) {
-    return it.isFile() ? this.processFile(fullPath) : this.processFolder(fullPath);;
+    return it.isFile() ? this.processFile(fullPath) : this.processFolder(fullPath);
 
   }
 
@@ -43,33 +43,33 @@ class JackboxProcessor {
   }
 
   modifyFile(file, fullPath) {
-    const fieldsProperty = _.has(file, "fields")? "fields" :this.game.arrayName;
+    const fieldsProperty = this.game.fieldsProperty(file);
     const fields = file[fieldsProperty];
     const newFields = fields.map(it => this.processField(it));
-    return fs.writeFileAsync(fullPath, JSON.stringify({ ...file,  [fieldsProperty]: newFields }));
+    const newFile = { ...file,  [fieldsProperty]: newFields };
+    return fs.writeFileAsync(fullPath, JSON.stringify(newFile));
   }
 
   processField(field){
-    if(!this.isPrompt(field[this.game.promptIdProperty]) && !_.has(field, "id"))
+    if(!this.game.shouldProcessField(field))
       return field;
-      // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
-      // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
-      // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
-    const property = _.find(this.game.textProperties, (property) => _.has(field, property));
-    return this._modificator_(field, property);
+    return this.processProperties(field);
+  }
+
+  processProperties(field) {
+    const newFields = this.game.propertiesToModify(field)
+      .map(property => this._modificator_(field, property))
+    return { ...field, ...(_.reduce(newFields, _.merge, {})) };
   }
 
   fullGamePath() {
     return `${this.steamPath}\\${this.game.path}`
   }
 
-  isPrompt(property) {
-    return _.some(this.game.promptsRegExp, it => new RegExp(it, "gi").test(property))
-  }
-
   _modificator_(field) {
     throw new Error("Not implemented - This is an abstract class")
   }
+
 
 }
 

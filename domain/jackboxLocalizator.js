@@ -21,8 +21,8 @@ class JackboxLocalizator extends JackboxProcessor {
   _modificator_(field, property) {
     const id = `TRANSLATION_${hash(field[property])}`;
     // HAVING EFFECT INSIDE MAP => NOT COOL
-     _.assign(this.localization, { [id]: field[property] })
-    return { ...field, [property]: id}
+    _.assign(this.localization, { [id]: field[property] })
+    return { [property]: id  };
   }
 
   shuffle() {

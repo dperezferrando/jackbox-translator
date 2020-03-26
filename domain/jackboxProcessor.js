@@ -53,14 +53,12 @@ class JackboxProcessor {
   processField(field){
     if(!this.game.shouldProcessField(field))
       return field;
-    const properties = this.game.propertyToModify(field);
-    return this.processProperties(field, properties);
+    return this.processProperties(field);
   }
 
-  processProperties(field, properties) {
-    const newFields = properties
-      .filter(property => _.has(field, property))
-      .map( property => this._modificator_(field, property))
+  processProperties(field) {
+    const newFields = this.game.propertiesToModify(field)
+      .map(property => this._modificator_(field, property))
     return { ...field, ...(_.reduce(newFields, _.merge, {})) };
   }
 

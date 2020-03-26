@@ -21,11 +21,9 @@ class Game {
     return this.isPrompt(field[this.promptIdProperty]) || _.has(field, "id");
   }
 
-  propertyToModify(field) {
-    // ALL OF THEM HAVE "v" BUT SOME HAVE "s".
-    // WHEN "s" IS PRESENT WE DONT CARE ABOUT "v"
-    // SO GETTING THE FIRST ONE SHOULD BE ENOUGH
-    return this.textProperties;//_.find(this.textProperties, (property) => _.has(field, property))
+  propertiesToModify(field) {
+    return this.textProperties
+      .filter(property => _.has(field, property))
   }
 
 

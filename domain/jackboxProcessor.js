@@ -32,7 +32,7 @@ class JackboxProcessor {
   }
 
   processFileOrFolder(it, fullPath) {
-    return it.isFile() ? this.processFile(fullPath) : this.processFolder(fullPath);;
+    return it.isFile() ? this.processFile(fullPath) : this.processFolder(fullPath);
 
   }
 
@@ -54,7 +54,12 @@ class JackboxProcessor {
     if(!this.game.shouldProcessField(field))
       return field;
     const properties = this.game.propertyToModify(field);
-    return this._modificator_(field, properties);
+    return this.processProperties(field, properties);
+  }
+
+  processProperties(field, properties) {
+    const newFields = properties.map( property => this._modificator_(field, property))
+    return { ...field, ...(_.reduce(newFields, _.merge, {})) };
   }
 
   fullGamePath() {

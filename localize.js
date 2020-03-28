@@ -6,6 +6,6 @@ import patentlyStupid from "./domain/games/patentlyStupid"
 import Game from "./domain/games/game"
 
 
-new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(pushTheButton))
+new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(patentlyStupid))
   .run()
 

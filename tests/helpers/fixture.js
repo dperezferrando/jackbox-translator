@@ -9,6 +9,7 @@ export const TEST_PROMPT2 = "Test Prompt 2";
 
 export const TRANSLATION = `TRANSLATION_${hash(TEST_PROMPT)}`;
 export const TRANSLATION2 = `TRANSLATION_${hash(TEST_PROMPT2)}`;
+export const TRANSLATION3 = [TRANSLATION, TRANSLATION2]
 export const NOT_TEXT = "This shouldn't be translated"
 export const TRANSLATED_TEXT = "Consigna de Prueba";
 export const TRANSLATED_TEXT2 = "Consigna de Prueba 2";
@@ -26,6 +27,11 @@ export const PROMPT2 = {
     "v": TEST_PROMPT
 }
 
+export const PROMPT3 = {
+    "n": "HumanPromptText",
+    "t": "S",
+    "v": [TEST_PROMPT, TEST_PROMPT2]
+}
 
 export const NOT_PROMPT = {
   "n": "AlienPromptAdultt1",

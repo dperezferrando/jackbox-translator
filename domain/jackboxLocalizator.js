@@ -18,29 +18,28 @@ class JackboxLocalizator extends JackboxProcessor {
 
   }
 
-  _modificator_(field, property) {
-    const value = field[property];
-    // HAVING EFFECT INSIDE MAP => NOT COOL
-    if(!_.isArray(value)) {
-      const id = `TRANSLATION_${hash(value)}`;
-      _.assign(this.localization, { [id]:  value })
-      return { [property]: id  };
-    } else {
-      const values = value.map(it => {
-        const id = `TRANSLATION_${hash(it)}`;
-        _.assign(this.localization, { [id]:  it })
-        return id;
-      })
-      return { [property]: values }
-    }
-  }
-
   shuffle() {
     return _(this.localization)
       .map((value, key) => ({ [key]: value }))
       .shuffle()
       .reduce((one, another) => ({ ...one, ...another }), {})
-    }
+  }
+
+  _modificator_(field, property) {
+    const value = field[property];
+    // HAVING EFFECT INSIDE MAP => NOT COOL
+    return { [property]: this._localizeValue(value) };
+  }
+
+  _localizeValue(value) {
+    return _.isArray(value) ? value.map(it => this._hashAndSave(it)) : this._hashAndSave(value);
+  }
+
+  _hashAndSave(value) {
+    const id = `TRANSLATION_${hash(value)}`;
+    _.assign(this.localization, { [id]:  value })
+    return id;
+  }
 
 }
 

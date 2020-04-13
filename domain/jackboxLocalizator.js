@@ -29,6 +29,7 @@ class JackboxLocalizator extends JackboxProcessor {
       const values = value.map(it => {
         const id = `TRANSLATION_${hash(it)}`;
         _.assign(this.localization, { [id]:  it })
+        return id;
       })
       return { [property]: values }
     }

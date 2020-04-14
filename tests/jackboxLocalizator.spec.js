@@ -1,7 +1,7 @@
 import should from 'should';
 import { PROMPT, PROMPT2, PROMPT3, PROMPT4, TRANSLATION, TRANSLATION2, TRANSLATION3, TRANSLATION4, NOT_PROMPT, NOT_TEXT, TEST_PROMPT, TEST_PROMPT2, jackboxLocalizator, localization } from "./helpers/fixture";
 
-describe('Jackbox Localizator tests', () => {
+describe('Jackbox Localizator', () => {
   it('should replace original texts with ID', () => {
 
     jackboxLocalizator.processField(PROMPT)

@@ -25,19 +25,12 @@ class JackboxLocalizator extends JackboxProcessor {
       .reduce((one, another) => ({ ...one, ...another }), {})
   }
 
-  _modificator_(field, property) {
-    const value = field[property];
-    // HAVING EFFECT INSIDE MAP => NOT COOL
-    return { [property]: this._localizeValue(value) };
-  }
-
-  _localizeValue(value) {
-    if(_.isPlainObject(value))
-      return this.processProperties(value);
+  _modifcateValue_(value) {
     return _.isArray(value) ? value.map(it => this._hashAndSave(it)) : this._hashAndSave(value);
   }
 
   _hashAndSave(value) {
+    // HAVING EFFECT INSIDE MAP => NOT COOL
     const id = `TRANSLATION_${hash(value)}`;
     _.assign(this.localization, { [id]:  value })
     return id;

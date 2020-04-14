@@ -9,14 +9,10 @@ class JackboxTranslator extends JackboxProcessor {
     this.localization = localization
   }
 
-
-  _modificator_ (field, property) {
-    const value = field[property];
-    if(_.isPlainObject(value))
-      return { [property]: this.processProperties(value) }
+  _modifcateValue_(value) {
     if(!_.isArray(value))
-      return { [property]: this.localization[value] };
-    return { [property]: value.map(it => this.localization[it])}
+      return  this.localization[value]
+    return value.map(it => this.localization[it])
   }
 
 }

@@ -7,6 +7,6 @@ import quiplash from "./domain/games/quiplash"
 import Game from "./domain/games/game"
 
 
-new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(quiplash))
+new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(pushTheButton))
   .run()
 

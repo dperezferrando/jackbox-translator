@@ -32,6 +32,8 @@ class JackboxLocalizator extends JackboxProcessor {
   }
 
   _localizeValue(value) {
+    if(_.isPlainObject(value))
+      return this.processProperties(value);
     return _.isArray(value) ? value.map(it => this._hashAndSave(it)) : this._hashAndSave(value);
   }
 

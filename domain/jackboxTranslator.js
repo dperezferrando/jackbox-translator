@@ -10,9 +10,7 @@ class JackboxTranslator extends JackboxProcessor {
   }
 
   _modifcateValue_(value) {
-    if(!_.isArray(value))
-      return  this.localization[value]
-    return value.map(it => this.localization[it])
+    return  this.localization[value];
   }
 
 }

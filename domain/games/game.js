@@ -10,7 +10,7 @@ class Game {
   }
 
   isPrompt(property) {
-    return _.some(this.promptsRegExp, it => new RegExp(it, "gi").test(property))
+    return _.some(this.promptsRegExp, it => new RegExp(it, "g").test(property))
   }
 
   fieldsProperty(file) {

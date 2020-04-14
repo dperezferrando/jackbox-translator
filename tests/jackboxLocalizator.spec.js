@@ -1,5 +1,5 @@
 import should from 'should';
-import { PROMPT, PROMPT2, PROMPT3, TRANSLATION, TRANSLATION2, TRANSLATION3, NOT_PROMPT, NOT_TEXT, TEST_PROMPT, TEST_PROMPT2, jackboxLocalizator, localization } from "./helpers/fixture";
+import { PROMPT, PROMPT2, PROMPT3, PROMPT4, TRANSLATION, TRANSLATION2, TRANSLATION3, TRANSLATION4, NOT_PROMPT, NOT_TEXT, TEST_PROMPT, TEST_PROMPT2, jackboxLocalizator, localization } from "./helpers/fixture";
 
 describe('Jackbox Localizator tests', () => {
   it('should replace original texts with ID', () => {
@@ -21,6 +21,13 @@ describe('Jackbox Localizator tests', () => {
       .should.have.properties({ "v": TRANSLATION3 })
   });
 
+  it('should recursively process field', () => {
+
+    jackboxLocalizator.processField(PROMPT4)
+      .should.have.properties({ "v": { id: 1, "v": TRANSLATION4 } })
+  });
+
+
   it("translation should be saved when processing field", () => {
 
     jackboxLocalizator.processField(PROMPT);
@@ -36,5 +43,8 @@ describe('Jackbox Localizator tests', () => {
       .should.value("v", NOT_TEXT)
   });
 
+  afterEach(() => {
+    jackboxLocalizator.localization = {};
+  });
 
 });

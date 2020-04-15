@@ -58,17 +58,31 @@ class JackboxProcessor {
 
   processProperties(field) {
     const newFields = this.game.propertiesToModify(field)
-      .map(property => this._modificator_(field, property))
+      .map(property => this.modificator(field, property))
     return { ...field, ...(_.reduce(newFields, _.merge, {})) };
+  }
+
+  modificator (field, property) {
+    const value = field[property];
+    return { [property]: this._getNewValue(value) };
   }
 
   fullGamePath() {
     return `${this.steamPath}\\${this.game.path}`
   }
 
-  _modificator_(field) {
+  _getNewValue(value){
+    return _.isArray(value) ? value.map(it => this._processFieldOrFinalValue(it)) : this._processFieldOrFinalValue(value);
+  }
+
+  _processFieldOrFinalValue(value) {
+    return _.isPlainObject(value) ? this.processProperties(value) : this._modifcateValue_(value)
+  }
+
+  _modifcateValue_(field) {
     throw new Error("Not implemented - This is an abstract class")
   }
+
 
 
 }

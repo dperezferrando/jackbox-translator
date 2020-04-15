@@ -4,5 +4,6 @@ export default {
   textProperties: ["v", "topic", "log", "decoys", "punchline", "setup"], // THE PROPERTIES THAT SHOULD BE TRANSLATED
   promptIdProperty: [], // THE PROPERY THAT IDENTIFIES THAT OBJECT AS A POSSIBLE PROMPT TEXT
   promptsRegExp: [], // THE STRINGS THAT WILL BE USED AS REGEXP TO IDENTIFY A PROMPT USING promptIdProperty
+  ignorePatterns: [], // PATTERNS THAT WILL BE IGNORED IF THEY ARE FOUND AS VALUE TO LOCALIZE
   arrayName: "content"
 }

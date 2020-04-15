@@ -23,7 +23,11 @@ class Game {
 
   propertiesToModify(field) {
     return this.textProperties
-      .filter(property => _.has(field, property))
+      .filter(property => _.has(field, property) && !this.isIgnored(field[property]))
+  }
+
+  isIgnored(value) {
+    return !isNaN(value) || _.some(this.ignorePatterns, pattern => new RegExp(pattern, "g").test(value));
   }
 
 

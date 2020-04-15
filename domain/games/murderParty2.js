@@ -4,5 +4,6 @@ export default {
   textProperties: ["v", "s", "prompt", "text", "alt", "answer", "answers", "lines", "points", "password", "choices"], // THE PROPERTIES THAT SHOULD BE TRANSLATED
   promptIdProperty: ["n"], // THE PROPERY THAT IDENTIFIES THAT OBJECT AS A POSSIBLE PROMPT TEXT
   promptsRegExp: ["^Q$", "PromptText"], // THE STRINGS THAT WILL BE USED AS REGEXP TO IDENTIFY A PROMPT USING promptIdProperty
+  ignorePatterns: ["[0-9]+_[0-9]$"], // PATTERNS THAT WILL BE IGNORED IF THEY ARE FOUND AS VALUE TO LOCALIZE
   arrayName: "content"
 }

@@ -1,6 +1,7 @@
 import Promise from "bluebird";
 import highland from "highland";
 import _ from "lodash";
+import progressBar from "../utils/progressBar";
 
 const fs = Promise.promisifyAll(require("fs"));
 
@@ -12,7 +13,8 @@ class JackboxProcessor {
   }
 
   run() {
-    return this.processFolder(this.fullGamePath());
+    progressBar.start(this.game.dataFilesLength()-1, 0);
+    return this.processFolder(this.fullGamePath())
   }
 
   processFolder(path) {
@@ -28,6 +30,7 @@ class JackboxProcessor {
     const fullPath = `${path}\\${dir}`;
     return highland(fs.lstatAsync(fullPath))
       .flatMap(it => highland(this.processFileOrFolder(it, fullPath)))
+      .tap(() => this.game.toReName(dir) && progressBar.increment());
 
   }
 

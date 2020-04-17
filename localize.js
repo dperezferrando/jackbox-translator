@@ -6,9 +6,10 @@ import patentlyStupid from "./domain/games/patentlyStupid"
 import quiplash from "./domain/games/quiplash"
 import jokeBoat from "./domain/games/jokeBoat"
 import murderParty2 from "./domain/games/murderParty2"
+import roleModels from "./domain/games/roleModels"
 import Game from "./domain/games/game"
 
 
-new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(murderParty2))
+new JackboxLocalizator("I:\Juegos\\Steam\\steamapps\\common", new Game(roleModels))
   .run()
 

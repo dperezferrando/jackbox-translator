@@ -72,7 +72,7 @@ class JackboxProcessor {
   }
 
   _getNewValue(value){
-    return _.isArray(value) ? value.map(it => this._processFieldOrFinalValue(it)) : this._processFieldOrFinalValue(value);
+    return _.isArray(value) ? value.map(it => this._getNewValue(it)) : this._processFieldOrFinalValue(value);
   }
 
   _processFieldOrFinalValue(value) {

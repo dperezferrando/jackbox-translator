@@ -44,7 +44,8 @@ const VALID_GAMES = [
   "jokeBoat",
   "murderParty2",
   "roleModels",
-  "guesspionage"
+  "guesspionage",
+  "monsterSeekingMonster"
 ];
 
 const JACKBOX_PROCESSORS = {

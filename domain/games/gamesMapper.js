@@ -5,6 +5,7 @@ import quiplash from "./quiplash"
 import jokeBoat from "./jokeBoat"
 import murderParty2 from "./murderParty2"
 import roleModels from "./roleModels"
+import guesspionage from "./guesspionage"
 
 export default {
   quiplash2,
@@ -13,5 +14,6 @@ export default {
   quiplash,
   jokeBoat,
   murderParty2,
-  roleModels
+  roleModels,
+  guesspionage
 };

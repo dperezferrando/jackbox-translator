@@ -9,6 +9,14 @@ class Game {
     return _.includes(this.dataFiles, fileName);
   }
 
+  dataFilesLength() {
+    return this.dataFiles.length;
+  }
+
+  toReName(fileName) {
+    return this.isDataFile(fileName) && fileName != "data.jet";
+  }
+
   isPrompt(property) {
     return _.some(this.promptsRegExp, it => new RegExp(it, "g").test(property))
   }

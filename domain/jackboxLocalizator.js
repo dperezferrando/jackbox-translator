@@ -6,15 +6,16 @@ const fs = Promise.promisifyAll(require("fs"));
 
 class JackboxLocalizator extends JackboxProcessor {
 
-  constructor(steamPath, game) {
+  constructor(steamPath, game, output) {
     super(steamPath, game);
+    this.output = output;
     this.localization = {}
   }
 
   run() {
     return super.run()
     .then(() => this.shuffle()) 
-    .then(localization => fs.writeFileAsync("./localization.json", JSON.stringify(localization)));
+    .then(localization => fs.writeFileAsync(this.output, JSON.stringify(localization)));
 
   }
 

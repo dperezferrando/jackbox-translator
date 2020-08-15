@@ -10,6 +10,7 @@ import monsterSeekingMonster from "./monsterSeekingMonster"
 import bidiots from "./bidiots"
 import fibbage2 from "./fibbage2"
 import fakinIt from "./fakinIt"
+import murderParty from "./murderParty"
 
 export default {
   quiplash2,
@@ -23,5 +24,6 @@ export default {
   monsterSeekingMonster,
   bidiots,
   fibbage2,
-  fakinIt
+  fakinIt,
+  murderParty
 };

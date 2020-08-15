@@ -47,9 +47,9 @@ class JackboxProcessor {
 
   modifyFile(file, fullPath) {
     const fieldsProperty = this.game.fieldsProperty(file);
-    const fields = file[fieldsProperty];
+    const fields = file[fieldsProperty] || _.castArray(file);
     const newFields = fields.map(it => this.processField(it));
-    const newFile = { ...file,  [fieldsProperty]: newFields };
+    const newFile = file[fieldsProperty] ? { ...file,  [fieldsProperty]: newFields } : _.first(newFields);
     return fs.writeFileAsync(fullPath, JSON.stringify(newFile));
   }
 

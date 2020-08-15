@@ -8,6 +8,7 @@ import roleModels from "./roleModels"
 import guesspionage from "./guesspionage"
 import monsterSeekingMonster from "./monsterSeekingMonster"
 import bidiots from "./bidiots"
+import fibbage2 from "./fibbage2"
 
 export default {
   quiplash2,
@@ -19,5 +20,6 @@ export default {
   roleModels,
   guesspionage,
   monsterSeekingMonster,
-  bidiots
+  bidiots,
+  fibbage2
 };

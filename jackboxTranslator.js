@@ -49,7 +49,8 @@ const VALID_GAMES = [
   "bidiots",
   "fibbage2",
   "fakinIt",
-  "murderParty"
+  "murderParty",
+  "bracketeering"
 ];
 
 const JACKBOX_PROCESSORS = {

@@ -11,6 +11,7 @@ import bidiots from "./bidiots"
 import fibbage2 from "./fibbage2"
 import fakinIt from "./fakinIt"
 import murderParty from "./murderParty"
+import bracketeering from "./bracketeering"
 
 export default {
   quiplash2,
@@ -25,5 +26,6 @@ export default {
   bidiots,
   fibbage2,
   fakinIt,
-  murderParty
+  murderParty,
+  bracketeering
 };

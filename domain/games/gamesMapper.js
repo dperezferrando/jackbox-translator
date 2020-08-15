@@ -12,6 +12,7 @@ import fibbage2 from "./fibbage2"
 import fakinIt from "./fakinIt"
 import murderParty from "./murderParty"
 import bracketeering from "./bracketeering"
+import fibbage3 from "./fibbage3"
 
 export default {
   quiplash2,
@@ -27,5 +28,6 @@ export default {
   fibbage2,
   fakinIt,
   murderParty,
-  bracketeering
+  bracketeering,
+  fibbage3
 };

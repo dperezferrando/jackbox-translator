@@ -9,6 +9,7 @@ import guesspionage from "./guesspionage"
 import monsterSeekingMonster from "./monsterSeekingMonster"
 import bidiots from "./bidiots"
 import fibbage2 from "./fibbage2"
+import fakinIt from "./fakinIt"
 
 export default {
   quiplash2,
@@ -21,5 +22,6 @@ export default {
   guesspionage,
   monsterSeekingMonster,
   bidiots,
-  fibbage2
+  fibbage2,
+  fakinIt
 };

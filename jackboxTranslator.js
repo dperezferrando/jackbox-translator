@@ -47,7 +47,8 @@ const VALID_GAMES = [
   "guesspionage",
   "monsterSeekingMonster",
   "bidiots",
-  "fibbage2"
+  "fibbage2",
+  "fakinIt"
 ];
 
 const JACKBOX_PROCESSORS = {
